@@ -61,3 +61,41 @@
 | database/migrations  | 存放 DB 資料表文件（操作數據表結構） |
 | database/seeds  | 存放 DB 種子文件（模擬測試數據） |
 ---
+## 路由別名
+路由別名相當於在路由定義的時候，為路由起了一個別名，在以後的程序中可以通過這個別名來獲取路由的訊息。
+例如：  
+```
+Route::any('/test/1123/1561/yuikyu',funtion(){}
+     echo "hello world!"
+})->('名字')
+```  
+可透過```php artisan route:list```查看。  
+
+## 路由群組  
+比如後台有以下路由：
+```
+/admin/login  
+/admin/logout  
+/admin/index  
+/admin/user/add  
+/admin/user/del  
+...
+```
+他們的共同點是都有/admin/，為方便管理，可將他們放到一個路由分組中。
+使用 **prefix** 屬性指定路由。  
+```
+Route::group['prefix'=>'admin'],function(){
+    Route::get('login',function(){
+        //匹配“/admin/users”URL
+
+    });
+    Route::get('logout',function(){
+        //匹配“/admin/users”URL
+
+    });
+    Route::get('index',function(){
+        //匹配“/admin/users”URL
+
+    });
+});
+```
